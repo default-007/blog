@@ -1,0 +1,17 @@
+% extends 'base.html'%} {% block content %}
+<div class="container">
+  <div class="col-md-4">
+    <img
+      width="90%"
+      src="{{movie.poster}}"
+      alt="{{movie.title}}"
+      class="img-responsive posters"
+    />
+  </div>
+
+  <div class="col-md-8">
+    {{ wtf.quick_form(comment_form) }}
+  </div>
+</div>
+
+{% endblock %}

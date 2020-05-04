@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Home - Pitch . Space</title>
+    {% endif %}
+  </head>
+  <body>
+    {% block content %}
+    <h3>Pitch Deck</h3>
+    <ul>
+      {% for category in piches %}
+      <li>{{ category.title}}</li>
+      <li>{{ category.post}}</li>
+      <li>{{ category.user.username}}</li>
+      {% endfor %}
+      <a
+        class="ratings"
+        href="{{url_for('main.comment',pitch_id = category.id)}}"
+        >Comment</a
+      >
+    </ul>
+    {% endblock%}
+  </body>
+</html>
