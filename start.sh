@@ -1,3 +1,3 @@
-export SECRET_KEY='zUSh0tePFrKuM5kor6ewSS4D8ebfIueB'
+export SECRET_KEY='default123456789'
 
 python3.8 manage.py server
