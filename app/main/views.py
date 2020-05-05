@@ -3,6 +3,7 @@ from . import main
 from ..models import Comment, Pitch, User
 from .forms import CommentForm
 
+
 # Views
 @main.route('/')
 def index():
