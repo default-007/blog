@@ -6,7 +6,7 @@
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
-    <title>Home - Pitch . Space</title>
+    <title>Home - Blog . Space</title>
     {% endif %}
   </head>
   <body>
@@ -18,11 +18,6 @@
       <li>{{ category.post}}</li>
       <li>{{ category.user.username}}</li>
       {% endfor %}
-      <a
-        class="ratings"
-        href="{{url_for('main.comment',pitch_id = category.id)}}"
-        >Comment</a
-      >
     </ul>
     {% endblock%}
   </body>
