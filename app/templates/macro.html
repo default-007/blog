@@ -1,0 +1,99 @@
+{% macro displayPitches(my_pitches) %} {% for pitch in my_pitches %}
+<div class="col-md-12 pitches">
+  {% if pitch.user.profile_pic_path %}
+  <p>
+    <img
+      src="{{url_for('static',filename = pitch.user.profile_pic_path)}}"
+      alt=""
+      class="img-thumbnail"
+    />
+    <a href="/user/{{pitch.user.username}}&{{pitch.user.id}}"
+      >{{pitch.user.username|capitalize}}</a
+    >
+  </p>
+  {% else %}
+  <p>
+    <img
+      src="{{url_for('static',filename = 'photos/avatar2.png')}}"
+      alt=""
+      class="img-thumbnail"
+    />
+    <a href="/user/{{pitch.user.username}}&{{pitch.user.id}}"
+      >{{pitch.user.username|capitalize}}</a
+    >
+  </p>
+  {% endif %}
+  <p>{{pitch.pitch_content}}</p>
+  <p class="small">Category: {{pitch.pitch_category}}</p>
+  <hr />
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <a href="/pitch/{{pitch.id}}">Add Comment</a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn btn-primary" href="{{url_for('main.like',id=pitch.id)}}">
+        <i class="fa fa-thumbs-up fa-1x"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn btn-warning" href="{{url_for('main.dislike',id=pitch.id)}}">
+        <i class="fa fa-thumbs-down fa-1x"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+{% endfor %} {% endmacro %} {% macro displayComments(my_comments) %} {% for
+comment in my_comments %}
+<hr />
+<div class="comment">
+  <p>
+    {% if comment.user.profile_pic_path %}
+    <img
+      src="{{url_for('static',filename = comment.user.profile_pic_path)}}"
+      alt=""
+      class="img-thumbnail"
+    />
+    {% else %}
+    <img
+      src="{{url_for('static',filename = 'photos/avatar2.png')}}"
+      alt=""
+      class="img-thumbnail"
+    />
+    {% endif %}
+    <a href="/user/{{comment.user.username}}&{{comment.user.id}}"
+      >{{comment.user.username|capitalize}}</a
+    >
+  </p>
+  <p>{{comment.comment_content}}</p>
+</div>
+{% endfor %} {% endmacro %} {% macro displayCategory(my_categories) %} {% for
+category in my_categories %}
+<div class="col-md-12 pitches">
+  <p>
+    <a href="/user/{{category.user.username}}&{{category.user.id}}"
+      >{{category.user.username|capitalize}}</a
+    >
+  </p>
+  <p>{{category.pitch_content}}</p>
+  <p class="small">Category: {{category.pitch_category}}</p>
+  <hr />
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <a href="/pitch/{{category.id}}">Add Comment</a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn btn-primary" href="{{url_for('main.like',id=category.id)}}">
+        <i class="fa fa-thumbs-up fa-1x"></i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a
+        class="btn btn-warning"
+        href="{{url_for('main.dislike',id=category.id)}}"
+      >
+        <i class="fa fa-thumbs-down fa-1x"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+{% endfor %} {% endmacro %}

@@ -17,6 +17,41 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a></li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span class="cat">Categories</span>
+          </a>
+          <div class="dropdown-menu category" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/category/Interview-Pitch"
+              >Interview Pitch</a
+            >
+            <a class="dropdown-item" href="/category/Product-Pitch"
+              >Product Pitch</a
+            >
+            <a class="dropdown-item" href="/category/Promotion-Pitch"
+              >Promotion Pitch</a
+            >
+            <a class="dropdown-item" href="/category/Business">Business</a>
+            <a class="dropdown-item" href="/category/Academic">Academic</a>
+            <a class="dropdown-item" href="/category/Political">Political</a>
+            <a class="dropdown-item" href="/category/Technology">Technology</a>
+            <a class="dropdown-item" href="/category/Health">Health</a>
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item"
+              href="{{url_for('main.profile', uname = current_user.username, id_user = current_user.id)}}"
+              >{{current_user.username|capitalize}}</a
+            >
+          </div>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
