@@ -58,12 +58,12 @@ class Pitch(db.Model):
     
     @classmethod
     def get_all_pitches(cls):
-        pitches = Pitch.query.order_by('-id').all()
+        pitches = Pitch.query.order_by('id').all()
         return pitches
     
     @classmethod
     def get_category(cls, cat):
-        category = Pitch.query.filter_by(pitch_category = cat).order_by('-id').all()
+        category = Pitch.query.filter_by(pitch_category = cat).order_by('id').all()
         
         return category
 
