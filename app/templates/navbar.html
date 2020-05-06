@@ -1,74 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" href="/">Blog|Pitch</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-light" style="background-color: #233d4d;" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"> Blog|Pitch </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/"
-          >Home <span class="sr-only">(current)</span></a
-        >
-      </li>
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/category/Interview-Pitch"
-            >Interview Pitch</a
-          >
-          <a class="dropdown-item" href="/category/Product-Pitch"
-            >Product Pitch</a
-          >
-          <a class="dropdown-item" href="/category/Promotion-Pitch"
-            >Promotion Pitch</a
-          >
-          <a class="dropdown-item" href="/category/Business">Business</a>
-          <a class="dropdown-item" href="/category/Academic">Academic</a>
-          <a class="dropdown-item" href="/category/Political">Political</a>
-          <a class="dropdown-item" href="/category/Technology">Technology</a>
-          <a class="dropdown-item" href="/category/Health">Health</a>
-          <div class="dropdown-divider"></div>
-          <a
-            class="dropdown-item"
-            href="{{url_for('main.profile', uname = current_user.username, id_user = current_user.id)}}"
-            >{{current_user.username|capitalize}}</a
-          >
-        </div>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      {% if current_user.is_authenticated %}
-      <li style="color: white; padding: 15px;">
-        {{current_user.username}}
-      </li>
-      <li>
-        <a href="{{url_for('main.profile',uname=current_user.username)}}"
-          >Profile</a
-        >
-      </li>
-      <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-      {% else %}
-      <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-      {%endif%}
-    </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu category" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/category/Interview-Pitch">Interview Pitch</a>
+            <a class="dropdown-item" href="/category/Product-Pitch">Product Pitch</a>
+            <a class="dropdown-item" href="/category/Promotion-Pitch">Promotion Pitch</a>
+            <a class="dropdown-item" href="/category/Business">Business</a>
+            <a class="dropdown-item" href="/category/Academic">Academic</a>
+            <a class="dropdown-item" href="/category/Political">Political</a>
+            <a class="dropdown-item" href="/category/Technology">Technology</a>
+            <a class="dropdown-item" href="/category/Health">Health</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item"
+              href="{{url_for('main.profile', uname = current_user.username, id_user = current_user.id)}}">{{current_user.username|capitalize}}</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <li style="color: white; padding: 15px;">
+          {{current_user.username}}
+        </li>
+        <li>
+          <a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
+        </li>
+        <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+        {% else %}
+        <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+        {%endif%}
+      </ul>
+    </div>
   </div>
 </nav>
