@@ -25,7 +25,7 @@ def create_app(config_name):
 
     # Create the app configuration
     app.config.from_object(config_options[config_name])
-
+    config_options[config_name].init_app(app)
     # configure UploadSet
     configure_uploads(app,photos)
 
