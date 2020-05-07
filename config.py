@@ -18,6 +18,9 @@ class Config:
      # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
+    @staticmethod
+    def init_app(app):
+        pass
 class ProdConfig(Config):
     '''
     Production  configuration child class
