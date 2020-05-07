@@ -7,13 +7,13 @@ from flask_uploads import UploadSet,configure_uploads,IMAGES
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from flask_mail import Mail
-from flask_simplemde import SimpleMDE
+
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
-simple = SimpleMDE()
+
 bootstrap=Bootstrap()
 db = SQLAlchemy()
 mail = Mail()

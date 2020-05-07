@@ -20,6 +20,7 @@ A user can select any of the categories from the navbar to view the pitches on t
 
 Other users can give feedback to the pitch posts by commenting, liking or disliking the pitch. 
 
+## Screenshots
 
 ## BDD
 
