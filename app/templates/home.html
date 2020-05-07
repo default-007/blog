@@ -1,23 +1,20 @@
-{% extends 'bootstrap/base.html' %} {% block navbar %} {% include 'navbar.html'
+{% extends 'base.html' %} {% block navbar %} {% include 'navbar.html'
 %} {% endblock %} {% import 'bootstrap/wtf.html' as wtf%} {% import 'macro.html'
 as macro%} {% block content %}
 <div class="container">
-  <div class="row rel">
-    <h2>Best Of Pitches</h2>
+  <h2>Best Of Pitches</h2>
+  <div class="">
+    <div>
+      <div class="jumbotron" style="background-color: #840032; color: #F4C3C2;">
+        {{wtf.quick_form(pitch_form)}}
+      </div>
+    </div>
+    <br>
     <div class="col-md-">
       <div class="card">
         {{macro.displayPitches(pitches)}}
       </div>
     </div>
-    <br>
-    <hr>
-    <hr>
-    <div class="col-md-">
-      <div class="jumbotron" style="background-color: #840032; color: #F3DAD8;">
-        {{wtf.quick_form(pitch_form)}}
-      </div>
-    </div>
-    <div class="col-md-"></div>
   </div>
 </div>
 {% endblock %}

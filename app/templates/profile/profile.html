@@ -35,6 +35,36 @@
         <input type="submit" />
       </form>
       {% endif %}
+      <br>
+      <hr>
+      <br>
+      <h3>Stats</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope='col'></th>
+            <th scope='col'>Stats</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pitches</td>
+            <td>{{pitches_no|length}}</td>
+          </tr>
+          <tr>
+            <td>Comments</td>
+            <td>{{comments_no|length}}</td>
+          </tr>
+          <tr>
+            <td>Pitches Liked</td>
+            <td>{{likes_no|length}}</td>
+          </tr>
+          <tr>
+            <td>Pitches Disliked</td>
+            <td>{{dislikes_no|length}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
