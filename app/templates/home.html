@@ -3,17 +3,20 @@
 as macro%} {% block content %}
 <div class="container">
   <div class="row rel">
-    <div class="col-md-">
-      <div class="jumbotron" style="background-color: #840032; color: #F3DAD8;">
-        {{wtf.quick_form(pitch_form)}}
-      </div>
-    </div>
+    <h2>Best Of Pitches</h2>
     <div class="col-md-">
       <div class="card">
         {{macro.displayPitches(pitches)}}
       </div>
     </div>
-
+    <br>
+    <hr>
+    <hr>
+    <div class="col-md-">
+      <div class="jumbotron" style="background-color: #840032; color: #F3DAD8;">
+        {{wtf.quick_form(pitch_form)}}
+      </div>
+    </div>
     <div class="col-md-"></div>
   </div>
 </div>
