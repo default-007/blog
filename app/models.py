@@ -91,17 +91,6 @@ class Comment(db.Model):
     def get_comments(cls,id):
         comments = Comment.query.filter_by(pitch_id=id).all()
         return comments
-    # def save_comment(self):
-
-
-    # @classmethod
-    # def get_comments(cls, id):
-
-    # for comment in cls.all_comments:
-    #     if comment.pitch_id == id:
-
-
-    # def __repr__(self):
 
 class Upvote(db.Model):
     __tablename__ = 'upvotes'
