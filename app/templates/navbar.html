@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #233d4d;" role="navigation">
+<nav class="navbar " style="background-color: #233d4d; color: #F4C3C2;" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,7 +25,6 @@
             <a class="dropdown-item" href="/category/Business">Business</a>
             <a class="dropdown-item" href="/category/Academic">Academic</a>
             <a class="dropdown-item" href="/category/Political">Political</a>
-            <a class="dropdown-item" href="/category/Technology">Technology</a>
             <a class="dropdown-item" href="/category/Health">Health</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item"
@@ -35,7 +34,9 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
+
         <li style="color: white; padding: 15px;">
+
           {{current_user.username}}
         </li>
         <li>

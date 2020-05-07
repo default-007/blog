@@ -5,26 +5,20 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <h4>
-        {% if pitch.user.profile_pic_path %}
-        <img
-          src="{{url_for('static',filename = pitch.user.profile_pic_path)}}"
-          alt=""
-          class="img-thumbnail"
-        />
-        {% else %}
-        <img
-          src="{{url_for('static',filename = 'photos/avatar.png')}}"
-          alt=""
-          class="img-thumbnail"
-        />
-        {% endif %}
-        <a href="/user/{{pitch.user.username}}&{{pitch.user.id}}"
-          >{{pitch.user.username|capitalize}}</a
-        >
+        <img src="{{url_for('static',filename = pitch.user.profile_pic_path)}}" alt="" class="img-thumbnail" style="vertical-align: middle;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;" />
+
+        <a href="/user/{{pitch.user.username}}&{{pitch.user.id}}">{{pitch.user.username|capitalize}}</a>
       </h4>
       <p class="">{{ pitch.pitch_content }}</p>
-      <hr />
-      {{wtf.quick_form(comment_form)}}
+      <hr>
+      <p>{{ macro.displayComments(my_comments) }}</p>
+
+      <div class="jumbotron" style="background-color: #840032; color: #F3DAD8;">
+        {{wtf.quick_form(comment_form)}}
+      </div>
     </div>
     <hr />
     <div class="col-md-2"></div>

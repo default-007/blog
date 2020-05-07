@@ -1,9 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Comment, Pitch, User
+from ..models import Comment, Pitch, User, Upvote, Downvote
 from .forms import CommentForm, UpdateProfile, PitchForm
 from .. import db, photos
-from flask_login import login_required
+from flask_login import login_required, current_user
+import markdown2
 
 
 
@@ -14,12 +15,8 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    title = 'Home - Pitch . Space'
-    #pitches = Pitch.query.all()
-    #lyric = Pitch.query.filter_by(category = 'Lyric').all()
-    #sales = Pitch.query.filter_by(category = 'Sales').all()
-    #product = Pitch.query.filter_by(category = 'Product').all()
-
+    title = 'Home - Blog|Pitch'
+   
     return render_template('index.html',title = title)
 
 
@@ -68,7 +65,7 @@ def update_pic(uname):
     return redirect(url_for('main.profile', uname=uname))
     
 
-'''
+
 @main.route('/comment/<int:pitch_id>', methods = ['POST','GET'])
 def comment(pitch_id):
     form = CommentForm()
@@ -82,7 +79,7 @@ def comment(pitch_id):
         new_comment.save_c()
         return redirect(url_for('.comment', pitch_id = pitch_id))
     return render_template('main.new_comment.html', comment_form =comment_form, pitch = pitch,all_comments=all_comments) 
-'''
+
 @main.route('/home', methods = ['GET', 'POST'])
 @login_required
 def home():
@@ -92,14 +89,14 @@ def home():
         pitch = pitch_form.pitch.data
         cat = pitch_form.my_category.data
 
-        new_pitch = Pitch(pitch_content=pitch, pitch_category = cat)
+        new_pitch = Pitch(pitch_content=pitch, pitch_category = cat, user = current_user)
         new_pitch.save_pitch()
 
         return redirect(url_for('main.home'))
 
     all_pitches = Pitch.get_all_pitches()
 
-    title = 'Home | One Minute Pitch'    
+    title = 'Home | Blog|Pitch'    
     return render_template('home.html', title=title, pitch_form=pitch_form, pitches=all_pitches)
     
 @main.route('/pitch/<int:id>',methods = ['GET','POST'])
@@ -115,7 +112,7 @@ def pitch(id):
 
     if comment_form.validate_on_submit():
         comment_data = comment_form.comment.data
-        new_comment = Comment(comment_content = comment_data, pitch_id = id)
+        new_comment = Comment(comment_content = comment_data, pitch_id = id, user = current_user)
         new_comment.save_comment()
 
         return redirect(url_for('main.pitch',id=id))
@@ -133,6 +130,44 @@ def pitch(id):
 def category(cat):
     my_category = Pitch.get_category(cat)
 
-    title = f'{cat} category | One Minute Pitch'
+    title = f'{cat} category | Blog|Pitch'
 
     return render_template('category.html', title=title, category=my_category)
+
+
+@main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+@login_required
+def upvote(pitch_id):
+    pitch = Pitch.query.get(pitch_id)
+    user = current_user
+    pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
+    
+    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
+        return  redirect(url_for('main.index'))
+
+
+    new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
+    new_upvote.save_upvotes()
+    return redirect(url_for('main.index'))
+
+
+
+#    new_upvote = Upvote(user=current_user, pitch=pitch, vote_number=1)
+#    new_vote.save_vote()
+# return redirect(url_for('main.index'))
+
+
+@main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
+@login_required
+def downvote(pitch_id):
+    pitch = Pitch.query.get(pitch_id)
+    user = current_user
+    pitch_downvotes = Downvote.query.filter_by(pitch_id= pitch_id)
+    
+    if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
+        return  redirect(url_for('main.index'))
+
+
+    new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
+    new_downvote.save_downvotes()
+    return redirect(url_for('main.index'))

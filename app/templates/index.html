@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html'%} {% block navbar %} {% include 'navbar.html'
 %} {% endblock %} {% block content %}
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron" style="background-color: #840032; color: #F3DAD8;">
     <div class="row">
       <div class="col-md-12 welcome">
         <div class="intro">
@@ -15,18 +15,11 @@
             "Your name is your strength" -- Roots
           </p>
           {% if current_user.is_authenticated%}
-          <a
-            id="start"
-            class="btn btn-danger text-center"
-            href="{{url_for('main.home')}}"
-            ><span class="view">View Pitches</span></a
-          >
+          <a id="start" class="btn btn-danger text-center" href="{{url_for('main.home')}}"><span class="view">View
+              Pitches</span></a>
           {% else %}
-          <a
-            id="start"
-            class="btn btn-danger text-center"
-            href="{{url_for('auth.login')}}"
-            ><span class="view">Sign In</span>
+          <a id="start" class="btn btn-danger text-center" href="{{url_for('auth.login')}}"><span class="view">Sign
+              In</span>
           </a>
           {% endif %}
         </div>
