@@ -1,6 +1,5 @@
-# blog
 # [blog](https://blog-pitch.herokuapp.com/)
-## blog  is a flask application that is meant for users to add pitches on 7 different categories
+### blog  is a flask application that is meant for users to add pitches on 7 different categories
 
 #### By **[Brian Otieno](https://github.com/default-007)**
 
