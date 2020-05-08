@@ -1,4 +1,5 @@
-{% macro displayPitches(my_pitches) %} {% for pitch in my_pitches %}
+{% macro displayPitches(my_pitches) %}
+{% for pitch in my_pitches %}
 <div class="col-md-12 pitches">
   <h3 class="card-title">Category: {{pitch.pitch_category}}</h3>
   <div class="card-body">
@@ -8,30 +9,37 @@
     </blockquote>
 
     <a href="/pitch/{{pitch.id}}">Add Comment</a>
-
+    <ul class="list-inline">
+      <li class="list-inline-item">
+        <a class="btn btn-primary" href="{{url_for('main.like',id=pitch.id)}}">
+          <i class="fa fa-thumbs-up fa-1x"></i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn btn-warning" href="{{url_for('main.dislike',id=pitch.id)}}">
+          <i class="fa fa-thumbs-down fa-1x"></i>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
-{% endfor %} {% endmacro %} {% macro displayComments(my_comments) %} {% for comment in my_comments %}
+{% endfor %}
+{% endmacro %}
+
+{% macro displayComments(my_comments) %}
+{% for comment in my_comments %}
 <hr>
 <div class="comment">
-  <p>{% if comments %}
-    {% for comment in comments %}
-    <div class="row text-center">
-      <img src="{{url_for('static',filename = comment.user.profile_pic_path)}}" alt="" class="img-thumbnail">
-      <a href="/user/{{comment.user.username}}&{{comment.user.id}}">{{comment.user.username|capitalize}}</a>
-      <a>
-        <p style="color: brown">>{{comment.comment_content}}</p>
-      </a>
-      <small> posted by {{comment.user.username}}</small>
-    </div>
-    {% endfor %}
-    {% else %}
-
-    <h3>This post does not does not have any comments yet !</h3>
-    {%endif%}
+  <p>
+    {% if comment.user.profile_pic_path %}
+    <img src="{{url_for('static',filename = comment.user.profile_pic_path)}}" alt="" class="img-thumbnail"> {% else %}
+    <img src="{{url_for('static',filename = 'photos/avatar2.png')}}" alt="" class="img-thumbnail"> {% endif %}
+    <a href="/user/{{comment.user.username}}&{{comment.user.id}}">{{comment.user.username|capitalize}}</a>
   </p>
+  <p>{{comment.comment_content}}</p>
 </div>
-{% endfor %} {% endmacro %} {% macro displayCategory(my_categories) %}
+{% endfor %} {% endmacro %}
+{% macro displayCategory(my_categories) %}
 {% for category in my_categories %} <div class="col-md-12 pitches">
   <p>
     <a href="/user/{{category.user.username}}&{{category.user.id}}">{{category.user.username|capitalize}}</a>

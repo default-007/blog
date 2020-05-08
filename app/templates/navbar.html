@@ -39,7 +39,8 @@
           {{current_user.username}}
         </li>
         <li>
-          <a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
+          <a href="{{url_for('main.profile', uname = current_user.username, id_user = current_user.id)}}">Profile</a>
+
         </li>
         <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}
