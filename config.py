@@ -7,7 +7,7 @@ class Config:
     '''
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://default-007:expandebles7@localhost/blog'
+    
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -24,9 +24,8 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
-
-
+    SQLALCHEMY_DATABASE_URI =os.environ.get("DATABASE_URL")
+    
 class DevConfig(Config):
     '''
     Development  configuration child class
@@ -35,6 +34,7 @@ class DevConfig(Config):
     '''
 
     DEBUG = True
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://default-007:expandebles7@localhost/blog'
 
 config_options = {
 'development':DevConfig,
