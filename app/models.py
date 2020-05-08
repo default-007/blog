@@ -37,7 +37,7 @@ class User(UserMixin, db.Model):
         self.hash_pass = generate_password_hash(password)
         
     def verify_password(self, password):
-        return check_password_hash(self.hash_pass, password)
+        return check_password_hash(self.pass_secure, password)
     
     
     def __repr__(self):
